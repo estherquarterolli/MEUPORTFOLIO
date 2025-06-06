@@ -1,4 +1,3 @@
-
 :root {
     --cor-primaria: #9D4EDD;
     --cor-secundaria: #7B2CBF;
@@ -403,50 +402,9 @@ body.tema-escuro .terminal-text .blink-cursor-footer::after {
     color: var(--cor-brilho);
 }
 
-/* Keyframes Globais */
+
 @keyframes blink-caret {
     from, to { opacity: 1; }
     50% { opacity: 0; }
 }
 
-
-@media (max-width: 992px) {
-    .secao { padding: 70px 20px; } 
-    .separador-l-container.canto-superior-esquerdo::before { width: 100px; }
-    .separador-l-container.canto-superior-esquerdo::after { height: 60px; }
-    .separador-l-container.canto-superior-esquerdo .separador-l-bolinha { top: 60px; }
-    .separador-l-container.canto-inferior-direito::before { width: 100px; }
-    .separador-l-container.canto-inferior-direito::after { height: 60px; }
-    .separador-l-container.canto-inferior-direito .separador-l-bolinha { bottom: 60px; }
-    
-    main { padding-top: calc(var(--altura-cabecalho-mobile, 170px) + var(--altura-scroll-bar) + 10px); }
-    .cabecalho { height: auto; } 
-}
-
-@media (max-width: 768px) {
-    .separador-l-container::before { width: 60px; }
-    .separador-l-container::after { height: 40px; }
-    .separador-l-container.canto-superior-esquerdo .separador-l-bolinha { top: 40px; }
-    .separador-l-container.canto-inferior-direito .separador-l-bolinha { bottom: 40px; }
-
-    .cabecalho .container { flex-direction: column; align-items: center; gap: 10px; padding-bottom: 10px; }
-    .navegacao { margin-top: 10px; width: 100%; }
-    .navegacao ul { flex-direction: column; width: 100%; align-items: center; }
-    .navegacao li { margin-left: 0; margin-bottom: 8px; width: 100%; text-align: center; }
-    .nav-link { display: block; padding: 10px; border-bottom: 1px solid var(--cor-borda-atual); }
-    .nav-link::after { display: none; }
-    .nav-link.ativo { background-color: rgba(var(--cor-primaria-rgb), 0.1); border-radius: var(--border-radius-padrao); }
-    .header-botoes { position: absolute; top: 20px; right: 20px; }
-}
-
-@media (max-width: 480px) {
-    :root { --altura-cabecalho-mobile: 160px; }
-    .separador-l-container { display: none; }
-    .secao { padding: 50px 10px; }
-    .secao h2 { font-size: 2.2rem; } 
-    .redes-sociais img { width: 28px; height: 28px; }
-    .logo { font-size: 1.8rem; }
-    .header-botoes { gap: 10px; }
-    #botao-tema, #botao-musica-header { width: 35px; height: 35px; padding: 6px;}
-    #botao-tema svg, #botao-musica-header svg { width: 18px; height: 18px;}
-}
