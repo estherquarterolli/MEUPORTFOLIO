@@ -3,1240 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esther Quarterolli - Desenvolvedora UX (Versão Consolidada)</title>
-
-    <style>
-        /* Início do CSS (Conteúdo de css/estilo.css) */
-        :root {
-            --cor-primaria: #8A2BE2; /* Roxo Principal (roxo da imagem) */
-            --cor-secundaria: #6A0DAD; /* Roxo mais escuro para hover/detalhes */
-            --cor-destaque: #BA55D3; /* Roxo mais claro para acentos */
-
-            --cor-fundo-claro: #FFFFFF;
-            --cor-texto-claro: #333333;
-            --cor-borda-claro: #DDDDDD;
-            --cor-cartao-claro: #F9F9F9;
-
-            --cor-fundo-escuro: #121212;
-            --cor-texto-escuro: #E0E0E0;
-            --cor-borda-escuro: #444444;
-            --cor-cartao-escuro: #1E1E1E;
-
-            --cor-fundo-atual: var(--cor-fundo-claro);
-            --cor-texto-atual: var(--cor-texto-claro);
-            --cor-borda-atual: var(--cor-borda-claro);
-            --cor-cartao-atual: var(--cor-cartao-claro);
-
-            --sombra-padrao: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --sombra-cartao-escuro: 0 4px 12px rgba(138, 43, 226, 0.2); /* Sombra roxa para tema escuro */
-            --transicao-padrao: all 0.3s ease-in-out;
-            --border-radius-padrao: 8px;
-        }
-
-        body.tema-escuro {
-            --cor-fundo-atual: var(--cor-fundo-escuro);
-            --cor-texto-atual: var(--cor-texto-escuro);
-            --cor-borda-atual: var(--cor-borda-escuro);
-            --cor-cartao-atual: var(--cor-cartao-escuro);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--cor-fundo-atual);
-            color: var(--cor-texto-atual);
-            line-height: 1.6;
-            transition: var(--transicao-padrao);
-            overflow-x: hidden; /* Para evitar scroll horizontal com o carrossel */
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        .container-conteudo { /* Para páginas como Sobre e Contato que não são full-width */
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--cor-primaria);
-            transition: var(--transicao-padrao);
-        }
-
-        a:hover {
-            color: var(--cor-secundaria);
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        .secao {
-            padding: 60px 0;
-        }
-
-        .secao h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--cor-primaria);
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .secao h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background-color: var(--cor-destaque);
-            margin: 8px auto 0;
-            border-radius: 2px;
-        }
-
-        /* Cabeçalho */
-        .cabecalho {
-            background-color: var(--cor-fundo-atual);
-            padding: 15px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            box-shadow: var(--sombra-padrao);
-            border-bottom: 1px solid var(--cor-borda-atual);
-            transition: var(--transicao-padrao);
-        }
-        body.tema-escuro .cabecalho {
-            box-shadow: 0 2px 8px rgba(138, 43, 226, 0.15);
-        }
-
-        .cabecalho .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--cor-primaria);
-        }
-
-        .navegacao ul {
-            display: flex;
-        }
-
-        .navegacao li {
-            margin-left: 25px;
-        }
-
-        .nav-link {
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--cor-texto-atual);
-            position: relative;
-            padding: 5px 0;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--cor-primaria);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after,
-        .nav-link.ativo::after {
-            width: 100%;
-        }
-
-        .nav-link.ativo {
-            color: var(--cor-primaria);
-            font-weight: 700;
-        }
-
-        #botao-tema {
-            background: none;
-            border: 1px solid var(--cor-primaria);
-            color: var(--cor-primaria);
-            padding: 8px;
-            cursor: pointer;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transicao-padrao);
-        }
-        #botao-tema:hover {
-            background-color: var(--cor-primaria);
-            color: var(--cor-fundo-claro); /* Cor do ícone quando hover */
-        }
-        body.tema-escuro #botao-tema:hover {
-            color: var(--cor-fundo-escuro);
-        }
-        #botao-tema svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        /* Conteúdo Principal - Padding para compensar header fixo */
-        main {
-            padding-top: 80px; /* Altura aproximada do header */
-        }
-        /* Seção Hero (Início) */
-        .secao-hero {
-            min-height: calc(100vh - 80px); /* 80px é o padding-top do main */
-            display: flex;
-            align-items: center;
-            background: linear-gradient(45deg, var(--cor-primaria) 0%, var(--cor-destaque) 100%);
-            color: var(--cor-fundo-claro); /* Texto branco no gradiente roxo */
-            padding: 40px 0;
-        }
-        body.tema-escuro .secao-hero {
-            background: linear-gradient(45deg, var(--cor-secundaria) 0%, var(--cor-primaria) 100%);
-        }
-
-        .secao-hero .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 30px;
-        }
-
-        .hero-conteudo {
-            max-width: 600px;
-        }
-        .hero-conteudo .saudacao {
-            font-size: 1.5rem;
-            font-weight: 500;
-        }
-        .wave {
-            display: inline-block;
-            animation: wave-animation 2s infinite;
-            transform-origin: 70% 70%;
-        }
-        @keyframes wave-animation {
-            0% { transform: rotate( 0.0deg) }
-            10% { transform: rotate(14.0deg) }
-            20% { transform: rotate(-8.0deg) }
-            30% { transform: rotate(14.0deg) }
-            40% { transform: rotate(-4.0deg) }
-            50% { transform: rotate(10.0deg) }
-            60% { transform: rotate( 0.0deg) }
-            100% { transform: rotate( 0.0deg) }
-        }
-
-        .hero-conteudo h1 {
-            font-size: 3rem; /* Ajustado para ser mais impactante */
-            font-weight: 700;
-            margin: 10px 0 20px;
-            line-height: 1.2;
-        }
-
-        .hero-conteudo .subtitulo {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .hero-botoes .botao {
-            padding: 12px 25px;
-            border-radius: var(--border-radius-padrao);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: var(--transicao-padrao);
-            display: inline-block;
-            margin-right: 15px;
-            border: 2px solid transparent;
-        }
-
-        .hero-botoes .botao.principal {
-            background-color: var(--cor-fundo-claro); /* Botão branco no fundo roxo */
-            color: var(--cor-primaria);
-        }
-        body.tema-escuro .hero-botoes .botao.principal {
-            background-color: var(--cor-fundo-escuro);
-            color: var(--cor-destaque);
-        }
-
-        .hero-botoes .botao.principal:hover {
-            background-color: transparent;
-            border-color: var(--cor-fundo-claro);
-            color: var(--cor-fundo-claro);
-        }
-        body.tema-escuro .hero-botoes .botao.principal:hover {
-            border-color: var(--cor-fundo-escuro);
-            color: var(--cor-fundo-escuro);
-        }
-
-
-        .hero-botoes .botao.secundario {
-            background-color: transparent;
-            border: 2px solid var(--cor-fundo-claro); /* Borda branca */
-            color: var(--cor-fundo-claro); /* Texto branco */
-        }
-        body.tema-escuro .hero-botoes .botao.secundario {
-            border-color: var(--cor-fundo-escuro);
-            color: var(--cor-fundo-escuro);
-        }
-
-        .hero-botoes .botao.secundario:hover {
-            background-color: var(--cor-fundo-claro);
-            color: var(--cor-primaria);
-        }
-        body.tema-escuro .hero-botoes .botao.secundario:hover {
-            background-color: var(--cor-fundo-escuro);
-            color: var(--cor-destaque);
-        }
-
-
-        .hero-imagem {
-            max-width: 350px; /* Ajuste conforme sua imagem */
-            animation: floatAnimation 3s ease-in-out infinite;
-        }
-        .hero-imagem img {
-            border-radius: 50%; /* Para um visual mais moderno, se a imagem permitir */
-            border: 5px solid rgba(255,255,255,0.2);
-            box-shadow: 0 0 30px rgba(0,0,0,0.2);
-        }
-        body.tema-escuro .hero-imagem img {
-            border-color: rgba(0,0,0,0.2);
-            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
-        }
-
-
-        @keyframes floatAnimation {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* Seção Habilidades */
-        #habilidades .grade-habilidades {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .cartao-habilidade {
-            background-color: var(--cor-cartao-atual);
-            padding: 25px;
-            border-radius: var(--border-radius-padrao);
-            box-shadow: var(--sombra-padrao);
-            transition: var(--transicao-padrao);
-            border: 1px solid var(--cor-borda-atual);
-        }
-        body.tema-escuro .cartao-habilidade {
-            box-shadow: var(--sombra-cartao-escuro);
-        }
-
-        .cartao-habilidade:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        }
-        body.tema-escuro .cartao-habilidade:hover {
-            box-shadow: 0 8px 16px rgba(138, 43, 226, 0.3);
-        }
-
-
-        .cartao-habilidade h3 {
-            font-size: 1.3rem;
-            color: var(--cor-primaria);
-            margin-bottom: 10px;
-        }
-
-        .barra-progresso {
-            background-color: var(--cor-borda-atual);
-            border-radius: 10px;
-            height: 12px;
-            overflow: hidden;
-        }
-
-        .barra-progresso div {
-            height: 100%;
-            background-color: var(--cor-primaria);
-            border-radius: 10px;
-            transition: width 1s ease-in-out; /* Animação da barra */
-        }
-
-
-        /* Seção Projetos (Carrossel) */
-        .carrossel-container {
-            position: relative;
-            overflow: hidden; /* Essencial para o carrossel */
-            width: 100%;
-            padding: 0 40px; /* Espaço para os botões laterais */
-        }
-
-        .carrossel-trilho {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            cursor: grab; /* Indicação de que pode ser arrastado */
-        }
-
-        .carrossel-trilho.arrastando {
-            cursor: grabbing;
-        }
-
-        .cartao-projeto {
-            min-width: 300px; /* Largura de cada item do carrossel */
-            max-width: 320px;
-            margin-right: 20px; /* Espaçamento entre os itens */
-            background-color: var(--cor-cartao-atual);
-            border-radius: var(--border-radius-padrao);
-            box-shadow: var(--sombra-padrao);
-            padding: 20px;
-            border: 1px solid var(--cor-borda-atual);
-            transition: var(--transicao-padrao);
-        }
-        body.tema-escuro .cartao-projeto {
-            box-shadow: var(--sombra-cartao-escuro);
-        }
-        .cartao-projeto:hover {
-            transform: translateY(-5px);
-        }
-
-        .cartao-projeto img {
-            width: 100%;
-            height: 180px; /* Altura fixa para as imagens dos projetos */
-            object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
-            border-radius: calc(var(--border-radius-padrao) - 5px); /* Borda interna */
-            margin-bottom: 15px;
-        }
-
-        .cartao-projeto h3 {
-            font-size: 1.4rem;
-            color: var(--cor-primaria);
-            margin-bottom: 10px;
-        }
-
-        .cartao-projeto p {
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            min-height: 60px; /* Para alinhar botões se descrições variarem */
-        }
-
-        .botao-projeto {
-            display: inline-block;
-            padding: 8px 18px;
-            background-color: var(--cor-primaria);
-            color: var(--cor-fundo-claro);
-            border-radius: 5px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        body.tema-escuro .botao-projeto {
-            color: var(--cor-fundo-escuro);
-        }
-
-        .botao-projeto:hover {
-            background-color: var(--cor-secundaria);
-            color: var(--cor-fundo-claro);
-        }
-        body.tema-escuro .botao-projeto:hover {
-            color: var(--cor-fundo-escuro);
-        }
-
-        .carrossel-botao {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0,0,0,0.3);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 10;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .carrossel-botao img {
-            width: 18px;
-            height: 18px;
-            filter: invert(1); /* Para setas brancas */
-        }
-        body.tema-escuro .carrossel-botao {
-            background-color: rgba(255,255,255,0.2);
-        }
-        body.tema-escuro .carrossel-botao img {
-            filter: none; /* Se a seta for preta ou escura */
-        }
-
-        .carrossel-botao:hover {
-            background-color: var(--cor-primaria);
-        }
-
-        .carrossel-botao.prev {
-            left: 5px;
-        }
-
-        .carrossel-botao.next {
-            right: 5px;
-        }
-
-        /* Seção Video/Audio Demo */
-        #video-audio-demo .botao {
-            padding: 10px 20px;
-            background-color: var(--cor-primaria);
-            color: var(--cor-fundo-claro);
-            border: none;
-            border-radius: var(--border-radius-padrao);
-            cursor: pointer;
-            transition: var(--transicao-padrao);
-            margin-top: 10px;
-        }
-        body.tema-escuro #video-audio-demo .botao {
-            color: var(--cor-fundo-escuro);
-        }
-        #video-audio-demo .botao:hover {
-            background-color: var(--cor-secundaria);
-        }
-
-        /* Rodapé */
-        .rodape {
-            background-color: var(--cor-cartao-atual); /* Um pouco diferente do fundo */
-            color: var(--cor-texto-atual);
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 40px; /* Espaçamento antes do rodapé */
-            border-top: 1px solid var(--cor-borda-atual);
-        }
-        body.tema-escuro .rodape {
-            background-color: #1A1A1A;
-        }
-
-        .redes-sociais {
-            margin-top: 15px;
-        }
-
-        .redes-sociais a {
-            margin: 0 12px;
-            display: inline-block;
-        }
-
-        .redes-sociais img {
-            width: 28px;
-            height: 28px;
-            transition: transform 0.3s ease;
-            filter: grayscale(50%) opacity(0.7); /* Sutil */
-        }
-        body.tema-escuro .redes-sociais img {
-            filter: brightness(0) invert(1) grayscale(30%) opacity(0.6); /* Ícones brancos no tema escuro */
-        }
-
-        .redes-sociais a:hover img {
-            transform: scale(1.2);
-            filter: grayscale(0%) opacity(1);
-        }
-        body.tema-escuro .redes-sociais a:hover img {
-            filter: brightness(0) invert(1) grayscale(0%) opacity(1);
-        }
-
-
-        /* CSS para página Sobre Mim (Estilos para elementos que podem estar em outras páginas, mas não serão visíveis aqui) */
-        .pagina-wrapper {
-            display: flex;
-            gap: 20px;
-            margin-top: 30px;
-            min-height: calc(100vh - 80px - 70px);
-        }
-
-        #barra-lateral {
-            flex: 0 0 250px;
-            background-color: var(--cor-cartao-atual);
-            padding: 20px;
-            border-radius: var(--border-radius-padrao);
-            border-right: 1px solid var(--cor-borda-atual);
-            height: fit-content;
-            box-shadow: var(--sombra-padrao);
-        }
-        body.tema-escuro #barra-lateral {
-            box-shadow: var(--sombra-cartao-escuro);
-        }
-
-        #barra-lateral h3, #barra-lateral h4 {
-            color: var(--cor-primaria);
-            margin-bottom: 10px;
-        }
-        #barra-lateral ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        #barra-lateral li {
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-        }
-        #barra-lateral hr {
-            border: 0;
-            height: 1px;
-            background-color: var(--cor-borda-atual);
-            margin: 15px 0;
-        }
-
-        #conteudo-principal-sobre {
-            flex-grow: 1;
-        }
-
-        .imagem-sobre {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 50%;
-            float: right;
-            margin: 0 0 15px 20px;
-            border: 3px solid var(--cor-primaria);
-        }
-        body.tema-escuro .imagem-sobre {
-            border-color: var(--cor-destaque);
-        }
-
-        #sobre-mim p, #experiencia-educacao p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-
-        /* Tabela */
-        .tabela-info {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            box-shadow: var(--sombra-padrao);
-        }
-        body.tema-escuro .tabela-info {
-            box-shadow: 0 2px 8px rgba(138, 43, 226, 0.1);
-        }
-
-        .tabela-info th, .tabela-info td {
-            border: 1px solid var(--cor-borda-atual);
-            padding: 10px 12px;
-            text-align: left;
-        }
-
-        .tabela-info thead {
-            background-color: var(--cor-primaria);
-            color: var(--cor-fundo-claro);
-        }
-        body.tema-escuro .tabela-info thead {
-            color: var(--cor-fundo-escuro);
-        }
-        .tabela-info th {
-            font-weight: 600;
-        }
-
-        .tabela-info tbody tr:nth-child(even) {
-            background-color: var(--cor-cartao-atual);
-        }
-        body.tema-escuro .tabela-info tbody tr:nth-child(even) {
-            background-color: #2a2a2a;
-        }
-        .tabela-info tbody tr:hover {
-            background-color: var(--cor-destaque);
-            color: var(--cor-fundo-claro);
-            transition: var(--transicao-padrao);
-        }
-        body.tema-escuro .tabela-info tbody tr:hover {
-            color: var(--cor-fundo-escuro);
-        }
-
-        /* CSS para Página Contato (Estilos para elementos que podem estar em outras páginas, mas não serão visíveis aqui) */
-        .formulario {
-            background-color: var(--cor-cartao-atual);
-            padding: 30px;
-            border-radius: var(--border-radius-padrao);
-            box-shadow: var(--sombra-padrao);
-            border: 1px solid var(--cor-borda-atual);
-            max-width: 700px;
-            margin: 20px auto;
-        }
-        body.tema-escuro .formulario {
-            box-shadow: var(--sombra-cartao-escuro);
-        }
-
-
-        .campo-form {
-            margin-bottom: 20px;
-        }
-
-        .campo-form label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-            color: var(--cor-primaria);
-        }
-
-        .campo-form input[type="text"],
-        .campo-form input[type="email"],
-        .campo-form textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--cor-borda-atual);
-            border-radius: 5px;
-            background-color: var(--cor-fundo-atual);
-            color: var(--cor-texto-atual);
-            font-size: 1rem;
-        }
-
-        .campo-form input[type="text"]:focus,
-        .campo-form input[type="email"]:focus,
-        .campo-form textarea:focus {
-            outline: none;
-            border-color: var(--cor-primaria);
-            box-shadow: 0 0 5px var(--cor-primaria);
-        }
-
-        .formulario .botao.principal {
-            padding: 12px 25px;
-            border-radius: var(--border-radius-padrao);
-            font-weight: 600;
-            background-color: var(--cor-primaria);
-            color: var(--cor-fundo-claro);
-            border: none;
-            cursor: pointer;
-        }
-        body.tema-escuro .formulario .botao.principal {
-            color: var(--cor-fundo-escuro);
-        }
-        .formulario .botao.principal:hover {
-            background-color: var(--cor-secundaria);
-        }
-        .feedback-form-mensagem {
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-        }
-        .feedback-form-mensagem.sucesso {
-            background-color: #D4EDDA;
-            color: #155724;
-            border: 1px solid #C3E6CB;
-        }
-        .feedback-form-mensagem.erro {
-            background-color: #F8D7DA;
-            color: #721C24;
-            border: 1px solid #F5C6CB;
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .cabecalho .container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .navegacao {
-                margin-top: 10px;
-                width: 100%;
-            }
-            .navegacao ul {
-                flex-direction: column;
-                width: 100%;
-            }
-            .navegacao li {
-                margin-left: 0;
-                margin-bottom: 5px;
-                text-align: center;
-                border-bottom: 1px solid var(--cor-borda-atual);
-            }
-            .navegacao li:last-child {
-                border-bottom: none;
-            }
-            #botao-tema {
-                position: absolute;
-                top: 20px;
-                right: 20px;
-            }
-            main {
-                padding-top: 150px; /* Ajustar conforme altura do header mobile */
-            }
-
-            .secao-hero .container {
-                flex-direction: column-reverse; /* Imagem acima no mobile */
-                text-align: center;
-            }
-            .hero-conteudo h1 {
-                font-size: 2.5rem;
-            }
-            .hero-botoes .botao {
-                margin-bottom: 10px;
-                margin-right: 5px; /* Menor margem */
-            }
-            .hero-imagem {
-                margin-bottom: 30px;
-                max-width: 250px;
-            }
-
-            .pagina-wrapper {
-                flex-direction: column;
-            }
-            #barra-lateral {
-                flex-basis: auto;
-                width: 100%;
-                margin-bottom: 20px;
-                border-right: none;
-                border-bottom: 1px solid var(--cor-borda-atual);
-            }
-            .imagem-sobre {
-                float: none;
-                display: block;
-                margin: 20px auto;
-            }
-
-            .carrossel-container {
-                padding: 0 5px; /* Menos padding para botões */
-            }
-            .carrossel-botao {
-                 width: 35px;
-                 height: 35px;
-            }
-            .carrossel-botao img {
-                 width: 15px;
-                 height: 15px;
-            }
-            .cartao-projeto {
-                min-width: 260px; /* Ajuste para telas menores */
-                max-width: 280px;
-                 margin-right: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .secao h2 {
-                font-size: 2rem;
-            }
-            .hero-conteudo h1 {
-                font-size: 2rem;
-            }
-            .hero-conteudo .subtitulo {
-                font-size: 1rem;
-            }
-           
-            .redes-sociais {
-                margin-top: 20px;
-            }
-            .redes-sociais a {
-                margin: 0 8px;
-            }
-            .redes-sociais img {
-                width: 24px;
-                height: 24px;
-            }
-            .hero-botoes {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .hero-botoes .botao {
-                width: 80%;
-                margin-right: 0;
-            }
-        }
-        /* Fim do CSS */
-    </style>
+    <title>Esther Quarterolli</title>
+
+    <link rel="stylesheet" href="styleindex.css">
+    <link rel="stylesheet" href="stylegeral.css">
+    <script src="scriptindex.js" defer ></script>
 </head>
 <body>
-    <audio id="musica-fundo" src="audio/lofi-background.mp3" loop></audio>
+    <div id="scroll-progress-bar-container">
+        <div id="scroll-progress-bar"></div>
+    </div>
+
+    <audio id="musica-fundo" src="assets/lofimusic.mp3" loop></audio>
 
     <header class="cabecalho">
         <div class="container">
-            <a href="index.html" class="logo">Esther Q.</a>
+            <a href="index.html" class="logo">Esther Quarterolli</a>
             <nav class="navegacao">
                 <ul>
-                    <li><a href="index.html" class="nav-link ativo">Início</a></li>
-                    <li><a href="sobre.html" class="nav-link">Sobre Mim</a></li>
-                    <li><a href="contato.html" class="nav-link">Contato</a></li>
-                </ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="sobremim.html" class="nav-link">About me</a></li>
+                    <li><a href="sobremim.html" class="nav-link">Contact</a></li> </ul>
             </nav>
-            <button id="botao-tema" aria-label="Alternar tema">
-                <svg id="icone-tema" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                    </svg>
-            </button>
+            <div class="header-botoes">
+                <button id="botao-musica-header" aria-label="Tocar/Pausar música">
+                    <svg id="icone-musica" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"></svg>
+                </button>
+                <button id="botao-tema" aria-label="Alternar tema">
+                    <svg id="icone-tema" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"></svg>
+                </button>
+            </div>
         </div>
     </header>
 
     <main>
-        <section id="inicio" class="secao-hero">
+        <section id="inicio" class="secao secao-hero">
+            <div class="separador-l-container canto-superior-esquerdo"><div class="separador-l-bolinha"></div></div>
+            <span class="particle p1"></span><span class="particle p2"></span><span class="particle p3"></span>
+            <span class="particle p4"></span><span class="particle p5"></span><span class="particle p6"></span>
             <div class="container">
                 <div class="hero-conteudo">
-                    <p class="saudacao">Olá! <span class="wave">👋</span></p>
-                    <h1>Eu sou Esther Quarterolli</h1>
-                    <p class="subtitulo">Uma Desenvolvedora & UX Designer apaixonada por criar experiências digitais incríveis.</p>
+                    <p class="saudacao">Hi!</p>
+                    <h1 id="hero-titulo" class="typing-effect">I am Esther!</h1>
+                    <p class="subtitulo">Developer focused on creating efficient, intuitive, and scalable solutions by combining programming logic with user experience insight.</p>
                     <div class="hero-botoes">
-                        <a href="#projetos" class="botao principal">Meus Projetos</a>
-                        <a href="contato.html" class="botao secundario">Contate-me</a> </div>
+                        <a href="#projetos" class="botao principal">My projects</a>
+                        <a href="sobremim.html" class="botao secundario">Contact me</a>
+                    </div>
                 </div>
                 <div class="hero-imagem">
-                    <img src="img/perfil.png" alt="Esther Quarterolli">
+                    <img src="assets/minhabonecahero.png" alt="Esther Quarterolli ">
                 </div>
             </div>
+            <div class="separador-l-container canto-inferior-direito"><div class="separador-l-bolinha"></div></div>
         </section>
 
         <section id="habilidades" class="secao">
-            <div class="container">
-                <h2>Tecnologias e Habilidades</h2>
-                <div class="grade-habilidades">
-                    <article class="cartao-habilidade">
-                        <h3>JavaScript</h3>
-                        <div class="barra-progresso"><div style="width: 85%;"></div></div>
-                    </article>
-                    <article class="cartao-habilidade">
-                        <h3>HTML5</h3>
-                        <div class="barra-progresso"><div style="width: 95%;"></div></div>
-                    </article>
-                    <article class="cartao-habilidade">
-                        <h3>CSS3</h3>
-                        <div class="barra-progresso"><div style="width: 90%;"></div></div>
-                    </article>
-                    <article class="cartao-habilidade">
-                        <h3>UX Design</h3>
-                        <div class="barra-progresso"><div style="width: 80%;"></div></div>
-                    </article>
-                    <article class="cartao-habilidade">
-                        <h3>Figma</h3>
-                        <div class="barra-progresso"><div style="width: 75%;"></div></div>
-                    </article>
-                    <article class="cartao-habilidade">
-                        <h3>React (Exemplo)</h3>
-                        <div class="barra-progresso"><div style="width: 60%;"></div></div>
-                    </article>
-                </div>
+            <div class="separador-l-container canto-superior-esquerdo"><div class="separador-l-bolinha"></div></div>
+            <div class="container-conteudo">
+                <h2>Technologies and Skills</h2>
+                <table class="tabela-habilidades">
+                    <thead>
+                        <tr>
+                            <th>Technology and Skill</th>
+                            <th>Proficiency level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>HTML5</td>
+                            <td><div class="barra-progresso"><div style="width: 95%;">95%</div></div></td>
+                        </tr>
+                        <tr>
+                            <td>JavaScript</td>
+                            <td><div class="barra-progresso"><div style="width: 40%;">40%</div></div></td>
+                        </tr>
+                        
+                        <tr>
+                            <td>CSS3 & Animations</td>
+                            <td><div class="barra-progresso"><div style="width: 80%;">80%</div></div></td>
+                        </tr>
+                        <tr>
+                            <td>UX Design & Search</td>
+                            <td><div class="barra-progresso"><div style="width: 90%;">90%</div></div></td>
+                        </tr>
+                        <tr>
+                            <td>Figma & Prototyping</td>
+                            <td><div class="barra-progresso"><div style="width: 90%;">90%</div></div></td>
+                        </tr>
+                        <tr>
+                            <td>React (js)</td>
+                            <td><div class="barra-progresso"><div style="width: 20%;">20%</div></div></td>
+                        </tr>
+                        <tr>
+                            <td>Responsive design </td>
+                            <td><div class="barra-progresso"><div style="width: 90%;">90%</div></div></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+            <div class="separador-l-container canto-inferior-direito"><div class="separador-l-bolinha"></div></div>
         </section>
 
         <section id="projetos" class="secao">
+            <div class="separador-l-container canto-superior-esquerdo"><div class="separador-l-bolinha"></div></div>
             <div class="container">
-                <h2>Projetos Populares</h2>
+                <h2>My projects</h2>
                 <div class="carrossel-container">
                     <div class="carrossel-trilho">
                         <article class="cartao-projeto">
-                            <img src="img/projeto1.png" alt="Nome do Projeto 1">
-                            <h3>Nome do Projeto 1</h3>
-                            <p>Breve descrição do projeto, tecnologias usadas e o impacto que causou.</p>
-                            <a href="#" class="botao-projeto">Ver Detalhes</a>
+                            <div class="conteudo-interno-projeto">
+                                <img src="">
+                                <h3>Photographer portfolio</h3>
+                                <p>Photography portfolio built with HTML, CSS, and JavaScript, featuring a responsive design, smooth navigation, and an interactive gallery that highlights every visual detail. Perfect for showcasing photographic work in an elegant and professional way.</p>
+                                <a href="https://github.com/estherquarterolli/portf-liofotografo" class="botao-projeto">Link</a>
+                            </div>
                         </article>
                         <article class="cartao-projeto">
-                            <img src="img/projeto2.png" alt="Nome do Projeto 2">
-                            <h3>Nome do Projeto 2</h3>
-                            <p>Outro projeto interessante, focado em resolver um problema específico com design e código.</p>
-                             <a href="#" class="botao-projeto">Ver Detalhes</a>
+                            <div class="conteudo-interno-projeto">
+                                <img src="" >
+                                <h3>Lading Page Food</h3>
+                                <p>Food landing page built with HTML, CSS, and JavaScript. The responsive layout, subtle animations, and intuitive navigation are designed to spark appetite and attract customers.</p>
+                                <a href="https://github.com/estherquarterolli/portfoliocomida" class="botao-projeto">Link</a>
+                            </div>
                         </article>
                         <article class="cartao-projeto">
-                            <img src="img/projeto3.png" alt="Nome do Projeto 3">
-                            <h3>Nome do Projeto 3</h3>
-                            <p>Este projeto demonstra habilidades em X, Y e Z, resultando em uma solução eficaz.</p>
-                             <a href="#" class="botao-projeto">Ver Detalhes</a>
+                            <div class="conteudo-interno-projeto">
+                                <img src="">
+                                <h3>Ecommerce clothing store</h3>
+                                <p>Clothing e-commerce store developed using HTML, CSS, and JavaScript on the front end, with PHP and MySQL on the back end. The system features a dynamic product catalog, functional shopping cart, and database integration for managing products, users, and orders. A complete solution for online fashion retail.</p>
+                                <a href="https://github.com/estherquarterolli/TCCATRINNEMODAFEMININA" class="botao-projeto">Link</a>
+                            </div>
                         </article>
                         <article class="cartao-projeto">
-                            <img src="img/projeto_placeholder.png" alt="Nome do Projeto 4">
-                            <h3>Nome do Projeto 4</h3>
-                            <p>Mais um exemplo de trabalho, explorando novas tecnologias e conceitos de design.</p>
-                             <a href="#" class="botao-projeto">Ver Detalhes</a>
+                            <div class="conteudo-interno-projeto">
+                                <img src="" >
+                                <h3>My Portfolio</h3>
+                                <p>Personal portfolio built with HTML, CSS, and JavaScript to showcase my projects, skills, and experience as a developer. The interface is fully responsive and user-friendly, featuring smooth navigation and dedicated sections for my profile, tech stack, and completed work.</p>
+                                <a href="https://github.com/estherquarterolli/MEUPORTFOLIO" class="botao-projeto">Link</a>
+                            </div>
                         </article>
                     </div>
                     <button class="carrossel-botao prev" aria-label="Projeto anterior">
-                        <img src="img/seta-esquerda.svg" alt="Seta para esquerda">
+                        <img src="assets/esquerda.png" alt="Seta para esquerda">
                     </button>
                     <button class="carrossel-botao next" aria-label="Próximo projeto">
-                        <img src="img/seta-direita.svg" alt="Seta para direita">
+                        <img src="assets/direita.png" alt="Seta para direita">
                     </button>
                 </div>
             </div>
+            <div class="separador-l-container canto-inferior-direito"><div class="separador-l-bolinha"></div></div>
         </section>
-
-        <button id="botao-musica" class="botao">Pausar Música</button>
-         
-
     </main>
 
     <footer class="rodape">
         <div class="container">
-            <p>© <span id="ano-atual"></span> Esther Quarterolli. Todos os direitos reservados.</p>
+            <p class="terminal-text prompt">System.out.println("Let's connect!");</p>
+            <p>© <span id="ano-atual"></span> Esther Quarterolli. All rights reserved.</p>
             <div class="redes-sociais">
-                <a href="#" target="_blank" aria-label="LinkedIn"><img src="img/icone-linkedin.svg" alt="LinkedIn"></a>
-                <a href="#" target="_blank" aria-label="GitHub"><img src="img/icone-github.svg" alt="GitHub"></a>
-                <a href="mailto:seuemail@exemplo.com" aria-label="Email"><img src="img/icone-email.svg" alt="Email"></a>
+                <a href="https://www.linkedin.com/in/esther-quarterolli-789624217/" target="_blank" aria-label="LinkedIn"><img src="assets/icons8-linkedin.svg" alt="LinkedIn"></a>
+                <a href="https://github.com/estherquarterolli" target="_blank" aria-label="GitHub"><img src="assets/icons8-github-logo-94.png" alt="GitHub"></a>
+                <a href="mailto:estherquarterollii@gmail.com" aria-label="Email"><img src="assets/icons8-gmail.svg" alt="Email"></a>
             </div>
+            <p class="terminal-text">status: online <span class="blink-cursor-footer"></span></p>
         </div>
     </footer>
 
-    <script>
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- GERAL ---
-            const anoAtualEl = document.getElementById('ano-atual');
-            if (anoAtualEl) {
-                anoAtualEl.textContent = new Date().getFullYear();
-            }
-
-            const navLinks = document.querySelectorAll('.nav-link');
-            const currentPath = "index.html"; // Forçado para index.html neste arquivo único
-            navLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPath) {
-                    link.classList.add('ativo');
-                } else {
-                    link.classList.remove('ativo');
-                }
-            });
-
-            // --- INTERAÇÃO 1: BOTÃO DE TEMA (CLARO/ESCURO) ---
-            const botaoTema = document.getElementById('botao-tema');
-            const iconeTemaSVGContainer = document.getElementById('icone-tema');
-            const corpo = document.body;
-
-            const svgSol = '<path fill-rule="evenodd" d="M12 17.5a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM12 20a8 8 0 100-16 8 8 0 000 16zm0-14a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0112 6zm0 10.5a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5a.75.75 0 01.75-.75zM8.05 8.05a.75.75 0 011.06-1.06l1.062 1.06a.75.75 0 01-1.06 1.062L8.05 8.05zm6.951 6.951a.75.75 0 011.06-1.06l1.062 1.06a.75.75 0 11-1.06 1.062l-1.062-1.06zM6 12a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5h-1.5A.75.75 0 016 12zm10.5 0a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5h-1.5a.75.75 0 01-.75-.75zM8.05 15.95a.75.75 0 011.06 1.06l-1.062 1.06a.75.75 0 11-1.06-1.062l1.062-1.06zM15.95 8.05a.75.75 0 011.06 1.06l-1.062 1.06a.75.75 0 01-1.06-1.062l1.062-1.06z" clip-rule="evenodd"></path>';
-            const svgLua = '<path fill-rule="evenodd" d="M9.522.94a.75.75 0 01.738 1.2L3.05 17.416a.75.75 0 01-1.3-.75L8.792.965a.75.75 0 01.73-.024zM11.26.65a.75.75 0 00-1.061 1.06L3.95 16.737a.75.75 0 001.06 1.061L11.26.65z" clip-rule="evenodd" opacity=".5"></path><path d="M18.5 13.016a.75.75 0 00-1.113-.924 6.501 6.501 0 01-8.025-8.025.75.75 0 10-1.113-.924A8.001 8.001 0 1018.5 13.016z"></path>';
-
-
-            const aplicarTema = (tema) => {
-                if (tema === 'escuro') {
-                    corpo.classList.add('tema-escuro');
-                    if (iconeTemaSVGContainer) iconeTemaSVGContainer.innerHTML = svgSol;
-                    localStorage.setItem('temaPortifolioEsther', 'escuro');
-                } else {
-                    corpo.classList.remove('tema-escuro');
-                    if (iconeTemaSVGContainer) iconeTemaSVGContainer.innerHTML = svgLua;
-                    localStorage.setItem('temaPortifolioEsther', 'claro');
-                }
-            };
-
-            if (botaoTema) {
-                botaoTema.addEventListener('click', () => {
-                    if (corpo.classList.contains('tema-escuro')) {
-                        aplicarTema('claro');
-                    } else {
-                        aplicarTema('escuro');
-                    }
-                });
-            }
-
-            const temaSalvo = localStorage.getItem('temaPortifolioEsther');
-            if (temaSalvo) {
-                aplicarTema(temaSalvo);
-            } else {
-                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    aplicarTema('escuro');
-                } else {
-                    aplicarTema('claro');
-                }
-            }
-
-            // --- ÁUDIO DE FUNDO ---
-            const musicaFundo = document.getElementById('musica-fundo');
-            const botaoMusica = document.getElementById('botao-musica');
-
-            if (musicaFundo) {
-                musicaFundo.volume = 0.3; // Volume mais baixo por padrão
-                const playPromise = musicaFundo.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(error => {
-                        console.log("Autoplay da música bloqueado. Interação do usuário necessária.");
-                        // Adicionar um overlay "Clique para ativar som" seria uma boa UX aqui
-                        if(botaoMusica) botaoMusica.textContent = 'Tocar Música';
-                    });
-                }
-            }
-
-            if (botaoMusica && musicaFundo) {
-                if(musicaFundo.paused){
-                    botaoMusica.textContent = 'Tocar Música';
-                } else {
-                    botaoMusica.textContent = 'Pausar Música';
-                }
-                botaoMusica.addEventListener('click', () => {
-                    if (musicaFundo.paused) {
-                        musicaFundo.play();
-                        botaoMusica.textContent = 'Pausar Música';
-                    } else {
-                        musicaFundo.pause();
-                        botaoMusica.textContent = 'Tocar Música';
-                    }
-                });
-            }
-
-            // --- INTERAÇÃO 2: CARROSSEL DE PROJETOS ---
-            const carrosselTrilho = document.querySelector('.carrossel-trilho');
-            const cartoesProjetoNodeList = document.querySelectorAll('.cartao-projeto'); // Renomeado para evitar conflito
-            const botaoPrev = document.querySelector('.carrossel-botao.prev');
-            const botaoNext = document.querySelector('.carrossel-botao.next');
-
-            if (carrosselTrilho && cartoesProjetoNodeList.length > 0) {
-                let indiceAtual = 0;
-                let arrastando = false;
-                let inicioX;
-                let scrollEsquerdaTrilho; // Renomeado
-                
-                const primeiroCartao = cartoesProjetoNodeList[0];
-                const estiloCartao = getComputedStyle(primeiroCartao);
-                const margemDireitaCartao = parseInt(estiloCartao.marginRight);
-                const larguraCartaoComMargem = primeiroCartao.offsetWidth + margemDireitaCartao;
-
-
-                const mostrarSlide = (indice) => {
-                    const deslocamento = -indice * larguraCartaoComMargem;
-                    carrosselTrilho.style.transform = `translateX(${deslocamento}px)`;
-                };
-
-                const atualizarVisibilidadeBotoes = () => { // Renomeado
-                    if (!botaoPrev || !botaoNext) return;
-                    const containerCarrossel = carrosselTrilho.parentElement;
-                    if (!containerCarrossel) return;
-
-                    const maxIndice = cartoesProjetoNodeList.length - Math.floor(containerCarrossel.offsetWidth / larguraCartaoComMargem);
-                    
-                    botaoPrev.style.display = indiceAtual === 0 ? 'none' : 'flex';
-                    botaoNext.style.display = indiceAtual >= maxIndice ? 'none' : 'flex';
-                };
-                
-                const ajustarIndiceParaVisivel = () => {
-                    const containerCarrossel = carrosselTrilho.parentElement;
-                     if (!containerCarrossel) return;
-                    const maxIndiceVisivel = Math.max(0, cartoesProjetoNodeList.length - Math.floor(containerCarrossel.offsetWidth / larguraCartaoComMargem));
-                    if (indiceAtual > maxIndiceVisivel) {
-                        indiceAtual = maxIndiceVisivel;
-                    }
-                    if(indiceAtual < 0) indiceAtual = 0;
-                }
-
-                if (botaoNext) {
-                    botaoNext.addEventListener('click', () => {
-                        const containerCarrossel = carrosselTrilho.parentElement;
-                        if (!containerCarrossel) return;
-                        const itensVisiveis = Math.floor(containerCarrossel.offsetWidth / larguraCartaoComMargem);
-                        if (indiceAtual < cartoesProjetoNodeList.length - itensVisiveis) {
-                            indiceAtual++;
-                            mostrarSlide(indiceAtual);
-                            atualizarVisibilidadeBotoes();
-                        }
-                    });
-                }
-
-                if (botaoPrev) {
-                    botaoPrev.addEventListener('click', () => {
-                        if (indiceAtual > 0) {
-                            indiceAtual--;
-                            mostrarSlide(indiceAtual);
-                            atualizarVisibilidadeBotoes();
-                        }
-                    });
-                }
-                
-                const inicioArrastar = (e) => {
-                    arrastando = true;
-                    carrosselTrilho.classList.add('arrastando');
-                    inicioX = e.pageX || e.touches[0].pageX;
-                    // Calcula a posição atual de translate
-                    const transformAtual = getComputedStyle(carrosselTrilho).transform;
-                    if (transformAtual !== 'none') {
-                        const matrix = new DOMMatrixReadOnly(transformAtual);
-                        scrollEsquerdaTrilho = matrix.m41; // e ou tx
-                    } else {
-                        scrollEsquerdaTrilho = 0;
-                    }
-                    carrosselTrilho.style.transition = 'none';
-                };
-
-                const arrastar = (e) => {
-                    if (!arrastando) return;
-                    e.preventDefault(); // Evita scroll da página em touch
-                    const x = e.pageX || e.touches[0].pageX;
-                    const caminhada = x - inicioX;
-                    carrosselTrilho.style.transform = `translateX(${scrollEsquerdaTrilho + caminhada}px)`;
-                };
-
-                const fimArrastar = (e) => {
-                    if (!arrastando) return;
-                    arrastando = false;
-                    carrosselTrilho.classList.remove('arrastando');
-                    carrosselTrilho.style.transition = 'transform 0.5s ease-in-out';
-
-                    const deslocamentoArrastado = (e.pageX || e.changedTouches[0].pageX) - inicioX;
-                    
-                    // Determina a mudança de índice baseada no arraste
-                    if (Math.abs(deslocamentoArrastado) > larguraCartaoComMargem / 4) { // Limiar de arraste
-                        if (deslocamentoArrastado < 0) { // Arrastou para esquerda (ver próximo)
-                           const containerCarrossel = carrosselTrilho.parentElement;
-                           if (!containerCarrossel) return;
-                           const itensVisiveis = Math.floor(containerCarrossel.offsetWidth / larguraCartaoComMargem);
-                           if (indiceAtual < cartoesProjetoNodeList.length - itensVisiveis) {
-                               indiceAtual++;
-                           }
-                        } else { // Arrastou para direita (ver anterior)
-                           if (indiceAtual > 0) {
-                               indiceAtual--;
-                           }
-                        }
-                    }
-                    ajustarIndiceParaVisivel();
-                    mostrarSlide(indiceAtual);
-                    atualizarVisibilidadeBotoes();
-                };
-
-                carrosselTrilho.addEventListener('mousedown', inicioArrastar);
-                carrosselTrilho.addEventListener('touchstart', inicioArrastar, { passive: true });
-
-                document.addEventListener('mousemove', arrastar);
-                document.addEventListener('touchmove', arrastar, { passive: false });
-
-                document.addEventListener('mouseup', fimArrastar);
-                document.addEventListener('mouseleave', (e) => { // Se sair da área da janela enquanto arrasta
-                    if(arrastando) fimArrastar(e);
-                });
-                document.addEventListener('touchend', fimArrastar);
-
-                ajustarIndiceParaVisivel();
-                mostrarSlide(indiceAtual);
-                atualizarVisibilidadeBotoes();
-                window.addEventListener('resize', () => {
-                    ajustarIndiceParaVisivel();
-                    mostrarSlide(indiceAtual);
-                    atualizarVisibilidadeBotoes();
-                });
-            }
-
-            // Formulário de Contato (Só funcionaria na página contato.html)
-            const formularioContato = document.getElementById('formulario-contato');
-            const feedbackForm = document.getElementById('feedback-form');
-
-            if (formularioContato && feedbackForm) { // Esta verificação impede erro se não estiver na página de contato
-                formularioContato.addEventListener('submit', function(evento) {
-                    evento.preventDefault(); 
-                    const nome = formularioContato.querySelector('#nome').value;
-                    feedbackForm.textContent = `Obrigado pelo contato, ${nome}! Sua mensagem foi "enviada".`;
-                    feedbackForm.className = 'feedback-form-mensagem sucesso';
-                    feedbackForm.style.display = 'block';
-                    formularioContato.reset();
-                    setTimeout(() => {
-                        feedbackForm.style.display = 'none';
-                    }, 5000);
-                });
-            }
-        });
-        // Fim do JavaScript
-    </script>
+    
 </body>
 </html>
