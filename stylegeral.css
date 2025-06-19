@@ -204,7 +204,7 @@ body.tema-escuro .secao h2 {
     border-bottom: 1px solid var(--cor-borda-atual);
     transition: var(--transicao-padrao), background-color 0.3s ease;
     height: var(--altura-cabecalho);
-    display: flex; 
+    display: flex;
     align-items: center;
 }
 
@@ -527,29 +527,26 @@ body.tema-escuro .terminal-text .blink-cursor-footer::after {
     }
 }
 
-/* ===== CORREÇÃO PARA O LOGO EM TELAS PEQUENAS ===== */
+/* Telas de celular menores */
 @media (max-width: 480px) {
     .secao h2 {
         font-size: 1.8rem;
     }
 
-    .cabecalho .container .logo {
-        /* Usamos !important para garantir que esta regra seja aplicada */
-        font-size: 0 !important; 
-        letter-spacing: 0 !important;
-    }
 
+    .cabecalho .container .logo {
+        font-size: 0 !important; /* Esconde o texto "Esther Quarterolli" */
+    }
     .cabecalho .container .logo::before {
-        content: "Esther Q.";
-        font-size: 1.6rem; /* Tamanho da fonte para "Esther Q." */
-        letter-spacing: normal;
+        content: "Esther Q."; /* Adiciona o novo texto */
+        font-size: 1.6rem; 
         font-weight: bold;
-        color: var(--cor-primaria); /* Garante que a cor seja a correta */
+        color: var(--cor-primaria);
     }
-    
     body.tema-escuro .cabecalho .container .logo::before {
-        color: var(--cor-destaque); /* Garante a cor no tema escuro */
+        color: var(--cor-destaque); 
     }
+  
     
     .separador-l-container, .separador-l-bolinha {
       display: none;
