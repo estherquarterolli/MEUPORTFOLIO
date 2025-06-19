@@ -1,9 +1,4 @@
-/**
- * geral.js
- * Contém todos os scripts comuns que podem ser executados em qualquer página do site.
- * Cada funcionalidade é encapsulada em uma verificação 'if' para garantir
- * que o código só execute se os elementos HTML necessários existirem na página.
- */
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // Barra de Progresso de Scroll
@@ -123,4 +118,5 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(atualizarIconeMusica, 100);
         }
     }
+
 });

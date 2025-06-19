@@ -1,4 +1,3 @@
-
 .pagina-sobre-wrapper {
     display: flex;
     gap: 40px;
@@ -256,3 +255,4 @@ body.tema-escuro .link-contato.github:hover {
 body.tema-escuro .links-extras-contato div:nth-child(1) { background-color: #34D399; }
 body.tema-escuro .links-extras-contato div:nth-child(2) { background-color: #60A5FA; }
 body.tema-escuro .links-extras-contato div:nth-child(3) { background-color: #F472B6; }
+
