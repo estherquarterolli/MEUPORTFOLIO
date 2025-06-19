@@ -225,7 +225,7 @@ body.tema-escuro .cabecalho {
     font-weight: bold;
     color: var(--cor-primaria);
     letter-spacing: -1px;
-    z-index: 1001; /* Garante que o logo fique acima do menu mobile */
+    z-index: 1001;
 }
 
 body.tema-escuro .logo {
@@ -413,7 +413,6 @@ body.tema-escuro .terminal-text .blink-cursor-footer::after {
 
 /* --- RESPONSIVIDADE --- */
 
-/* Estilos para Tablet (e telas menores que 992px) */
 @media (max-width: 992px) {
     .secao {
         padding: 50px 15px;
@@ -423,10 +422,9 @@ body.tema-escuro .terminal-text .blink-cursor-footer::after {
     }
 }
 
-/* Estilos para Celular (e telas menores que 768px) */
 @media (max-width: 768px) {
     .cabecalho {
-        padding: 0; /* Ajustado para o container cuidar do padding */
+        padding: 0;
     }
 
     .cabecalho .container {
@@ -436,7 +434,7 @@ body.tema-escuro .terminal-text .blink-cursor-footer::after {
     .navegacao {
         position: fixed;
         top: 0;
-        right: -100%; /* Começa fora da tela */
+        right: -100%;
         width: 70%;
         height: 100vh;
         background-color: rgba(var(--cor-fundo-rgb), 0.98);
@@ -457,12 +455,12 @@ body.tema-escuro .terminal-text .blink-cursor-footer::after {
     }
 
     .navegacao.ativo {
-        right: 0; /* Menu visível */
+        right: 0;
     }
     
     .navegacao ul {
         flex-direction: column;
-        gap: 40px; /* Aumenta o espaçamento vertical entre os links */
+        gap: 40px;
         width: 100%;
         text-align: center;
     }
@@ -472,7 +470,7 @@ body.tema-escuro .terminal-text .blink-cursor-footer::after {
     }
     
     .nav-link {
-        font-size: 1.5rem; /* Fonte maior para fácil toque */
+        font-size: 1.5rem;
     }
 
     .menu-hamburguer {
@@ -486,7 +484,7 @@ body.tema-escuro .terminal-text .blink-cursor-footer::after {
         cursor: pointer;
         padding: 0;
         z-index: 1001;
-        margin-left: 20px; /* Espaço entre botões e menu */
+        margin-left: 20px;
     }
 
     .menu-hamburguer .linha {
@@ -513,7 +511,7 @@ body.tema-escuro .terminal-text .blink-cursor-footer::after {
     }
 
     .header-botoes {
-        order: 3; /* Coloca os botões de tema/música antes do hamburguer */
+        order: 3;
     }
 
     .cabecalho .container {
@@ -524,23 +522,36 @@ body.tema-escuro .terminal-text .blink-cursor-footer::after {
         order: 1;
     }
 
-    /* Junta o menu hamburguer com os outros botões */
     .mobile-menu-trigger {
         order: 2;
     }
-
 }
 
+/* ===== CORREÇÃO PARA O LOGO EM TELAS PEQUENAS ===== */
 @media (max-width: 480px) {
     .secao h2 {
         font-size: 1.8rem;
     }
 
-    .logo {
-        font-size: 1.6rem;
+    .cabecalho .container .logo {
+        /* Usamos !important para garantir que esta regra seja aplicada */
+        font-size: 0 !important; 
+        letter-spacing: 0 !important;
+    }
+
+    .cabecalho .container .logo::before {
+        content: "Esther Q.";
+        font-size: 1.6rem; /* Tamanho da fonte para "Esther Q." */
+        letter-spacing: normal;
+        font-weight: bold;
+        color: var(--cor-primaria); /* Garante que a cor seja a correta */
+    }
+    
+    body.tema-escuro .cabecalho .container .logo::before {
+        color: var(--cor-destaque); /* Garante a cor no tema escuro */
     }
     
     .separador-l-container, .separador-l-bolinha {
-      display: none; /* Opcional: esconder os separadores em telas muito pequenas */
+      display: none;
     }
 }
