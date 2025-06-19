@@ -6,6 +6,7 @@
     color: var(--cor-fundo-claro);
     position: relative;
     overflow: hidden;
+    padding: 40px 0; /* Espaçamento para telas pequenas */
 }
 
 body.tema-escuro .secao-hero {
@@ -42,29 +43,25 @@ body.tema-escuro .particle {
 .hero-conteudo {
     max-width: 650px;
     animation: slideInFromLeft 1s ease-out;
+    text-align: center; /* Centraliza para mobile */
 }
 
 .hero-conteudo .saudacao {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 500;
-    display: flex;
-    align-items: center;
-}
-
-.wave {
-    display: inline-block;
-    animation: wave-animation 2.5s infinite;
-    transform-origin: 70% 70%;
-    margin-left: 10px;
-    font-size: 2rem;
+    justify-content: center;
 }
 
 .hero-conteudo h1 {
-    font-size: 3.8rem;
+    font-size: 3rem;
     font-weight: 700;
-    margin: 15px 0 25px;
+    margin: 10px 0 20px;
     line-height: 1.1;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    white-space: normal; /* Permite quebra de linha em mobile */
+}
+
+.hero-conteudo h1.typing-effect {
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
@@ -85,20 +82,27 @@ body.tema-escuro .hero-conteudo h1.typing-effect::after {
 }
 
 .hero-conteudo .subtitulo {
-    font-size: 1.3rem;
-    margin-bottom: 35px;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
     opacity: 0.95;
 }
 
+.hero-botoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap; /* Permite que os botões quebrem linha */
+}
+
 .hero-botoes .botao {
-    padding: 15px 30px;
+    padding: 12px 25px;
     border-radius: var(--border-radius-padrao);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: var(--transicao-padrao), transform 0.2s ease;
     display: inline-block;
-    margin-right: 20px;
+    margin: 5px; /* Margem para quando quebrar a linha */
     border: 2px solid transparent;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
@@ -143,7 +147,7 @@ body.tema-escuro .hero-botoes .botao.secundario:hover {
 }
 
 .hero-imagem {
-    max-width: 380px;
+    max-width: 350px;
     animation: floatAnimation 4s ease-in-out infinite, fadeInFromRight 1s ease-out;
     position: relative;
 }
@@ -193,6 +197,9 @@ body.tema-escuro .hero-imagem::after {
     border-top-right-radius: var(--border-radius-padrao);
     border-bottom-right-radius: var(--border-radius-padrao);
 }
+.tabela-habilidades thead {
+    display: table-header-group; /* Visível por padrão */
+}
 .tabela-habilidades thead th {
     background-color: var(--cor-primaria);
     color: var(--cor-fundo-claro);
@@ -208,6 +215,7 @@ body.tema-escuro .tabela-habilidades thead th {
 .tabela-habilidades tbody tr {
     box-shadow: var(--sombra-padrao);
     transition: var(--transicao-padrao);
+    display: table-row; /* Layout de linha por padrão */
 }
 body.tema-escuro .tabela-habilidades tbody tr {
     box-shadow: var(--sombra-cartao-escuro);
@@ -225,6 +233,9 @@ body.tema-escuro .tabela-habilidades tbody tr:hover {
 }
 body.tema-escuro .tabela-habilidades tbody tr:hover .barra-progresso div {
     box-shadow: 0 0 12px var(--cor-brilho);
+}
+.tabela-habilidades td {
+    display: table-cell; /* Célula de tabela por padrão */
 }
 .tabela-habilidades td:first-child {
     font-weight: 500;
@@ -262,7 +273,7 @@ body.tema-escuro .barra-progresso div {
     position: relative;
     overflow: hidden;
     width: 100%;
-    padding: 0 50px; 
+    padding: 0 40px; 
 }
 .carrossel-trilho {
     display: flex;
@@ -273,8 +284,8 @@ body.tema-escuro .barra-progresso div {
     cursor: grabbing;
 }
 .cartao-projeto {
-    min-width: 320px;
-    max-width: 340px;
+    flex: 0 0 320px; /* Base de tamanho para os cartões */
+    max-width: 320px;
     margin-right: 25px;
     background-color: var(--cor-cartao-atual); 
     border-radius: var(--border-radius-padrao);
@@ -328,7 +339,7 @@ body.tema-escuro .cartao-projeto .conteudo-interno-projeto {
     margin-bottom: 15px;
 }
 .cartao-projeto h3 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: var(--cor-primaria);
     margin-bottom: 10px;
 }
@@ -336,9 +347,9 @@ body.tema-escuro .cartao-projeto h3 {
     color: var(--cor-destaque);
 }
 .cartao-projeto p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     margin-bottom: 18px;
-    min-height: 65px;
+    min-height: 80px; /* Aumenta um pouco para evitar quebra de layout */
 }
 .botao-projeto {
     display: inline-block;
@@ -366,15 +377,15 @@ body.tema-escuro .botao-projeto:hover {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(var(--cor-texto-rgb),0.4);
+    background-color: rgba(var(--cor-texto-rgb),0.3);
     color: var(--cor-fundo-claro);
     border: none;
-    padding: 12px;
+    padding: 10px;
     cursor: pointer;
     z-index: 10;
     border-radius: 50%;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -382,11 +393,10 @@ body.tema-escuro .botao-projeto:hover {
 }
 body.tema-escuro .carrossel-botao {
     background-color: rgba(var(--cor-texto-escuro-rgb), 0.3);
-    color: var(--cor-fundo-escuro);
 }
 .carrossel-botao img {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     filter: invert(1) brightness(1.5);
 }
 body.tema-escuro .carrossel-botao img {
@@ -399,6 +409,98 @@ body.tema-escuro .carrossel-botao img {
 body.tema-escuro .carrossel-botao:hover {
     background-color: var(--cor-destaque);
 }
-.carrossel-botao.prev { left: 10px; }
-.carrossel-botao.next { right: 10px; }
+.carrossel-botao.prev { left: 5px; }
+.carrossel-botao.next { right: 5px; }
 
+/* --- RESPONSIVIDADE --- */
+
+/* Tablet */
+@media (max-width: 992px) {
+    .secao-hero .container {
+        flex-direction: column; /* Imagem fica em cima do texto */
+        text-align: center;
+    }
+    .hero-conteudo {
+        max-width: 100%;
+        order: 2; /* Texto vem depois da imagem */
+    }
+    .hero-imagem {
+        order: 1; /* Imagem vem primeiro */
+        max-width: 300px;
+        margin-bottom: 30px;
+    }
+    .hero-conteudo h1 {
+        font-size: 2.8rem;
+    }
+    #projetos .carrossel-container {
+        padding: 0 10px; /* Reduz o padding lateral do carrossel */
+    }
+    .carrossel-botao {
+        display: none; /* Esconde as setas, focando no arrastar */
+    }
+}
+
+/* Celular */
+@media (max-width: 768px) {
+    .secao-hero {
+        min-height: auto;
+    }
+    .hero-conteudo h1 {
+        font-size: 2.2rem;
+    }
+    .hero-conteudo .subtitulo {
+        font-size: 1rem;
+    }
+    .hero-imagem {
+        max-width: 250px;
+    }
+    
+    /* Transforma a tabela de habilidades em cartões */
+    .tabela-habilidades thead {
+        display: none; /* Esconde o cabeçalho da tabela */
+    }
+    .tabela-habilidades, .tabela-habilidades tbody, .tabela-habilidades tr, .tabela-habilidades td {
+        display: block; /* Transforma tudo em bloco */
+        width: 100%;
+    }
+    .tabela-habilidades tr {
+        margin-bottom: 15px;
+        border-radius: var(--border-radius-padrao);
+        overflow: hidden; /* Garante que os cantos arredondados funcionem */
+        box-shadow: var(--sombra-padrao);
+    }
+    .tabela-habilidades td {
+        text-align: left;
+        border: none;
+        padding: 10px 15px;
+    }
+    .tabela-habilidades td:first-child {
+        background-color: var(--cor-primaria);
+        color: var(--cor-fundo-claro);
+        font-weight: bold;
+        border-radius: 0;
+    }
+    body.tema-escuro .tabela-habilidades td:first-child {
+        background-color: var(--cor-complementar);
+        color: var(--cor-destaque);
+    }
+    .barra-progresso {
+        min-width: unset;
+    }
+    .tabela-habilidades td:last-child {
+        border-bottom-left-radius: var(--border-radius-padrao);
+        border-bottom-right-radius: var(--border-radius-padrao);
+    }
+
+    #projetos .carrossel-container {
+        padding: 0;
+    }
+    .carrossel-trilho {
+        padding: 0 15px; /* Adiciona um padding para os cartões não colarem nas bordas */
+    }
+    .cartao-projeto {
+        flex: 0 0 85%; /* Cartão ocupa 85% da largura da tela */
+        max-width: 85%;
+        margin-right: 15px;
+    }
+}

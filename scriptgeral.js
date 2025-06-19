@@ -1,5 +1,49 @@
-
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Adiciona o botão de menu hambúrguer dinamicamente
+    const cabecalhoContainer = document.querySelector('.cabecalho .container');
+    const navegacao = document.querySelector('.navegacao');
+    const headerBotoes = document.querySelector('.header-botoes');
+
+    if (cabecalhoContainer && navegacao) {
+        const menuHamburguer = document.createElement('button');
+        menuHamburguer.className = 'menu-hamburguer';
+        menuHamburguer.setAttribute('aria-label', 'Abrir/Fechar menu');
+        menuHamburguer.setAttribute('aria-expanded', 'false');
+        menuHamburguer.innerHTML = `
+            <span class="linha linha1"></span>
+            <span class="linha linha2"></span>
+            <span class="linha linha3"></span>
+        `;
+        
+        // Insere o hambúrguer depois dos botões de tema/música
+        if(headerBotoes) {
+            headerBotoes.insertAdjacentElement('afterend', menuHamburguer);
+        } else {
+            cabecalhoContainer.appendChild(menuHamburguer);
+        }
+
+        menuHamburguer.addEventListener('click', () => {
+            const isAtivo = menuHamburguer.classList.toggle('ativo');
+            navegacao.classList.toggle('ativo');
+            menuHamburguer.setAttribute('aria-expanded', isAtivo);
+            // Bloqueia o scroll do body quando o menu está aberto
+            document.body.style.overflow = isAtivo ? 'hidden' : '';
+        });
+
+        // Fecha o menu ao clicar em um link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if(navegacao.classList.contains('ativo')) {
+                    menuHamburguer.classList.remove('ativo');
+                    navegacao.classList.remove('ativo');
+                    menuHamburguer.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    }
+
 
     // Barra de Progresso de Scroll
     const scrollProgressBar = document.getElementById('scroll-progress-bar');
@@ -40,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         anoAtualEl.textContent = new Date().getFullYear();
     }
 
-    //  Links de Navegação Ativos (usando a versão mais robusta do script 1)
+    //  Links de Navegação Ativos
     const navLinks = document.querySelectorAll('.nav-link');
     if (navLinks.length > 0) {
         const currentPageFile = window.location.pathname.split("/").pop() || "index.html";
@@ -95,13 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (botaoMusicaHeader) {
             musicaFundo.volume = 0.2;
             
-            const playPromise = musicaFundo.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.error("Autoplay da música bloqueado. Interação do usuário necessária.", error);
-                    atualizarIconeMusica();
-                });
-            }
+            // Não tentar dar autoplay, esperar clique do usuário.
+            atualizarIconeMusica();
 
             botaoMusicaHeader.addEventListener('click', () => {
                 if (musicaFundo.paused) {
@@ -115,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
             musicaFundo.onpause = atualizarIconeMusica;
             musicaFundo.onended = atualizarIconeMusica;
             musicaFundo.onerror = () => atualizarIconeMusica();
-            setTimeout(atualizarIconeMusica, 100);
         }
     }
 

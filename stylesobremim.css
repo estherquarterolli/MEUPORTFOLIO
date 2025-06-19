@@ -10,6 +10,10 @@
     flex: 1; /* Ocupa 1/3 do espaço */
     padding-left: 30px;
     border-left: 2px solid var(--cor-borda-atual);
+    position: sticky; /* Faz o sidebar "grudar" na tela durante o scroll */
+    top: calc(var(--altura-cabecalho) + 20px);
+    height: fit-content;
+
 }
 body.tema-escuro .sobre-sidebar-contato {
     border-left-color: var(--cor-borda-escuro);
@@ -159,9 +163,8 @@ body.tema-escuro #form-contato-sobre button[type="submit"]:hover {
     background-color: var(--cor-primaria);
 }
 
-/* Feedback do Formulário */
 .feedback-form-mensagem {
-    display: none; /* Começa escondido */
+    display: none;
     margin-top: 15px;
     padding: 10px;
     border-radius: var(--border-radius-padrao);
@@ -171,6 +174,7 @@ body.tema-escuro #form-contato-sobre button[type="submit"]:hover {
 }
 .feedback-form-mensagem.sucesso {
     background-color: var(--cor-cartao-claro); 
+
     color: #155724; /* Verde escuro para texto */
     border-color: #c3e6cb; /* Borda verde clara */
 }
@@ -179,7 +183,6 @@ body.tema-escuro .feedback-form-mensagem.sucesso {
     color: #A7F3D0; /* Verde claro para texto no tema escuro */
     border-color: #34D399; /* Borda verde mais escura para contraste */
 }
-
 
 .links-extras-contato {
     display: flex;
@@ -213,46 +216,39 @@ body.tema-escuro .feedback-form-mensagem.sucesso {
 }
 
 
-.link-contato.whatsapp {
-    background-color: #25D366; 
-    color: white;
-    border-color: #1DAA50;
-}
-.link-contato.whatsapp:hover {
-    background-color: #1DAA50;
+.link-contato.whatsapp { background-color: #25D366; color: white; border-color: #1DAA50; }
+.link-contato.whatsapp:hover { background-color: #1DAA50; }
+.link-contato.github { background-color: #333; color: white; border-color: #1a1a1a; }
+.link-contato.github:hover { background-color: #1a1a1a; }
+.link-contato.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); color: white; border: none; }
+.link-contato.instagram:hover { opacity: 0.9; }
+body.tema-escuro .link-contato.github { background-color: #444; border-color: #2b2b2b; }
+body.tema-escuro .link-contato.github:hover { background-color: #2b2b2b; }
+
+/* --- RESPONSIVIDADE --- */
+
+/* Tablet */
+@media (max-width: 992px) {
+    .pagina-sobre-wrapper {
+        flex-direction: column;
+    }
+    .sobre-sidebar-contato {
+        flex: auto; 
+        padding-left: 0;
+        border-left: none;
+        border-top: 2px solid var(--cor-borda-atual);
+        padding-top: 30px;
+        position: static; 
+    }
+    body.tema-escuro .sobre-sidebar-contato {
+        border-top-color: var(--cor-borda-escuro);
+    }
 }
 
-.link-contato.github {
-    background-color: #333; 
-    color: white;
-    border-color: #1a1a1a;
-}
-.link-contato.github:hover {
-    background-color: #1a1a1a;
-}
 
-.link-contato.instagram {
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-    color: white;
-    border: none; 
+@media (max-width: 768px) {
+    .sobre-secao h2 {
+        font-size: 1.8rem;
+    }
 }
-.link-contato.instagram:hover {
-    opacity: 0.9; 
-}
-
-body.tema-escuro .link-contato.github {
-    background-color: #444; 
-    border-color: #2b2b2b;
-}
-body.tema-escuro .link-contato.github:hover {
-    background-color: #2b2b2b;
-}
-
-.links-extras-contato div:nth-child(1) { background-color: #A7F3D0;  }
-.links-extras-contato div:nth-child(2) { background-color: #BFDBFE;  }
-.links-extras-contato div:nth-child(3) { background-color: #FBCFE8;  }
-
-body.tema-escuro .links-extras-contato div:nth-child(1) { background-color: #34D399; }
-body.tema-escuro .links-extras-contato div:nth-child(2) { background-color: #60A5FA; }
-body.tema-escuro .links-extras-contato div:nth-child(3) { background-color: #F472B6; }
 
