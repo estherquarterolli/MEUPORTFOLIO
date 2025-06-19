@@ -6,7 +6,7 @@
     color: var(--cor-fundo-claro);
     position: relative;
     overflow: hidden;
-    padding: 40px 0; /* Espaçamento para telas pequenas */
+    padding: 40px 0;
 }
 
 body.tema-escuro .secao-hero {
@@ -43,7 +43,7 @@ body.tema-escuro .particle {
 .hero-conteudo {
     max-width: 650px;
     animation: slideInFromLeft 1s ease-out;
-    text-align: center; /* Centraliza para mobile */
+    text-align: center;
 }
 
 .hero-conteudo .saudacao {
@@ -58,7 +58,7 @@ body.tema-escuro .particle {
     margin: 10px 0 20px;
     line-height: 1.1;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-    white-space: normal; /* Permite quebra de linha em mobile */
+    white-space: normal;
 }
 
 .hero-conteudo h1.typing-effect {
@@ -91,7 +91,7 @@ body.tema-escuro .hero-conteudo h1.typing-effect::after {
     display: flex;
     justify-content: center;
     gap: 15px;
-    flex-wrap: wrap; /* Permite que os botões quebrem linha */
+    flex-wrap: wrap;
 }
 
 .hero-botoes .botao {
@@ -102,7 +102,7 @@ body.tema-escuro .hero-conteudo h1.typing-effect::after {
     letter-spacing: 1px;
     transition: var(--transicao-padrao), transform 0.2s ease;
     display: inline-block;
-    margin: 5px; /* Margem para quando quebrar a linha */
+    margin: 5px;
     border: 2px solid transparent;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
@@ -198,7 +198,7 @@ body.tema-escuro .hero-imagem::after {
     border-bottom-right-radius: var(--border-radius-padrao);
 }
 .tabela-habilidades thead {
-    display: table-header-group; /* Visível por padrão */
+    display: table-header-group;
 }
 .tabela-habilidades thead th {
     background-color: var(--cor-primaria);
@@ -215,7 +215,7 @@ body.tema-escuro .tabela-habilidades thead th {
 .tabela-habilidades tbody tr {
     box-shadow: var(--sombra-padrao);
     transition: var(--transicao-padrao);
-    display: table-row; /* Layout de linha por padrão */
+    display: table-row;
 }
 body.tema-escuro .tabela-habilidades tbody tr {
     box-shadow: var(--sombra-cartao-escuro);
@@ -235,7 +235,7 @@ body.tema-escuro .tabela-habilidades tbody tr:hover .barra-progresso div {
     box-shadow: 0 0 12px var(--cor-brilho);
 }
 .tabela-habilidades td {
-    display: table-cell; /* Célula de tabela por padrão */
+    display: table-cell;
 }
 .tabela-habilidades td:first-child {
     font-weight: 500;
@@ -284,7 +284,7 @@ body.tema-escuro .barra-progresso div {
     cursor: grabbing;
 }
 .cartao-projeto {
-    flex: 0 0 320px; /* Base de tamanho para os cartões */
+    flex: 0 0 320px;
     max-width: 320px;
     margin-right: 25px;
     background-color: var(--cor-cartao-atual); 
@@ -349,7 +349,7 @@ body.tema-escuro .cartao-projeto h3 {
 .cartao-projeto p {
     font-size: 0.9rem;
     margin-bottom: 18px;
-    min-height: 80px; /* Aumenta um pouco para evitar quebra de layout */
+    min-height: 80px;
 }
 .botao-projeto {
     display: inline-block;
@@ -414,18 +414,17 @@ body.tema-escuro .carrossel-botao:hover {
 
 /* --- RESPONSIVIDADE --- */
 
-/* Tablet */
 @media (max-width: 992px) {
     .secao-hero .container {
-        flex-direction: column; /* Imagem fica em cima do texto */
+        flex-direction: column;
         text-align: center;
     }
     .hero-conteudo {
         max-width: 100%;
-        order: 2; /* Texto vem depois da imagem */
+        order: 2;
     }
     .hero-imagem {
-        order: 1; /* Imagem vem primeiro */
+        order: 1;
         max-width: 300px;
         margin-bottom: 30px;
     }
@@ -433,14 +432,13 @@ body.tema-escuro .carrossel-botao:hover {
         font-size: 2.8rem;
     }
     #projetos .carrossel-container {
-        padding: 0 10px; /* Reduz o padding lateral do carrossel */
+        padding: 0 10px;
     }
     .carrossel-botao {
-        display: none; /* Esconde as setas, focando no arrastar */
+        display: none;
     }
 }
 
-/* Celular */
 @media (max-width: 768px) {
     .secao-hero {
         min-height: auto;
@@ -455,18 +453,27 @@ body.tema-escuro .carrossel-botao:hover {
         max-width: 250px;
     }
     
-    /* Transforma a tabela de habilidades em cartões */
+    
+    #habilidades .container-conteudo {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+    }
+    .tabela-habilidades {
+        max-width: 400px; 
+        margin: 0 auto; 
+    }
     .tabela-habilidades thead {
-        display: none; /* Esconde o cabeçalho da tabela */
+        display: none;
     }
     .tabela-habilidades, .tabela-habilidades tbody, .tabela-habilidades tr, .tabela-habilidades td {
-        display: block; /* Transforma tudo em bloco */
+        display: block;
         width: 100%;
     }
     .tabela-habilidades tr {
         margin-bottom: 15px;
         border-radius: var(--border-radius-padrao);
-        overflow: hidden; /* Garante que os cantos arredondados funcionem */
+        overflow: hidden;
         box-shadow: var(--sombra-padrao);
     }
     .tabela-habilidades td {
@@ -478,6 +485,7 @@ body.tema-escuro .carrossel-botao:hover {
         background-color: var(--cor-primaria);
         color: var(--cor-fundo-claro);
         font-weight: bold;
+        text-align: center; 
         border-radius: 0;
     }
     body.tema-escuro .tabela-habilidades td:first-child {
@@ -491,15 +499,16 @@ body.tema-escuro .carrossel-botao:hover {
         border-bottom-left-radius: var(--border-radius-padrao);
         border-bottom-right-radius: var(--border-radius-padrao);
     }
+  
 
     #projetos .carrossel-container {
         padding: 0;
     }
     .carrossel-trilho {
-        padding: 0 15px; /* Adiciona um padding para os cartões não colarem nas bordas */
+        padding: 0 15px;
     }
     .cartao-projeto {
-        flex: 0 0 85%; /* Cartão ocupa 85% da largura da tela */
+        flex: 0 0 85%;
         max-width: 85%;
         margin-right: 15px;
     }
